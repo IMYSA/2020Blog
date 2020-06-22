@@ -12,6 +12,9 @@
 }
 .image {
 }
+.primary_button {
+  color:#FFFFFF;
+}
 .heading_1 {
   font-family:'Arial Normal', 'Arial', sans-serif;
   font-weight:bold;
@@ -58,6 +61,12 @@
   text-align:left;
 }
 .paragraph {
+  text-align:left;
+}
+.line {
+}
+.text_area {
+  color:#000000;
   text-align:left;
 }
 .form_hint {
