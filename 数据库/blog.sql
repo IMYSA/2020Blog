@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80018
  Source Host           : localhost:3306
- Source Schema         : shixun
+ Source Schema         : blog
 
  Target Server Type    : MySQL
  Target Server Version : 80018
  File Encoding         : 65001
 
- Date: 29/06/2020 19:23:04
+ Date: 30/06/2020 15:01:43
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,8 @@ CREATE TABLE `article`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_bin NULL,
+  `time` datetime(6) NULL DEFAULT NULL,
   `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `file` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
@@ -33,6 +34,11 @@ CREATE TABLE `article`  (
   `commentList` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of article
+-- ----------------------------
+INSERT INTO `article` VALUES (1, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for comment
@@ -43,7 +49,7 @@ CREATE TABLE `comment`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `article` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `time` datetime(6) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
@@ -62,5 +68,11 @@ CREATE TABLE `user`  (
   `isManager` int(1) NULL DEFAULT NULL COMMENT '是否为管理员，0或1,0代表不是管理员，1代表是管理员',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, '1', NULL, '333', '444', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (2, NULL, NULL, '333', '444', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
