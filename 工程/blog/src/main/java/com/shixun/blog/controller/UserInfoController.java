@@ -28,17 +28,17 @@ public class UserInfoController {
 
     @RequestMapping(value = "/user/get_user_info",method = RequestMethod.POST)
     public User getUserInfo(@RequestBody User u){
-        return userinfomapper.getUser(u.getId());
+        return userinfomapper.getUserInfo(u.getId());
     }
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public int Login(@RequestBody User u){
-        if(userinfomapper.getUser(u.getName()) == null){
+        if(userinfomapper.getUserByName(u.getName()) == null){
             return -100;
         }
         else {
-            if(u.getPassword().equals(userinfomapper.getUser(u.getName()).getPassword()) ){
-                return userinfomapper.getUser(u.getName()).getId();
+            if(u.getPassword().equals(userinfomapper.getUserByName(u.getName()).getPassword()) ){
+                return userinfomapper.getUserByName(u.getName()).getId();
             }
             else {
                 return -100;

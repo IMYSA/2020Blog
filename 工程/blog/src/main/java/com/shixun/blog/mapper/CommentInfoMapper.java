@@ -6,14 +6,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 @Mapper
 public interface CommentInfoMapper {
-    @Insert("INSERT INTO `comment` (id, content, time, author, articleId) VALUES (#{id}, #{content}, #{time}, #{author}, #{articleId})")
+    @Insert("INSERT INTO `comment` ( content, time, author, articleId) VALUES ( #{content}, #{time}, #{author}, #{articleId})")
     void AddComment(Comment comment);
 
     @Select("select * from `comment` where articleId = #{articleId}")
-    Comment GetComment(int articleId);
+    List<Comment> GetComment(int articleId);
 
     @Select("select * from `comment` where author = #{author}")
-    Comment GetComment(String author);
+    List<Comment> GetComment(String author);
 }

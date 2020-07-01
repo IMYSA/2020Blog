@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 public class CommentInfoServiceImpl implements CommentInfoService{
     @Resource
@@ -19,12 +20,12 @@ public class CommentInfoServiceImpl implements CommentInfoService{
     }
 
     @Override
-    public Comment GetComment(int articleId) {
+    public List<Comment> GetComment(int articleId) {
         return commentInfoMapper.GetComment(articleId);
     }
 
     @Override
-    public Comment GetComment(String author) {
+    public List<Comment> GetComment(String author) {
         return commentInfoMapper.GetComment(author);
     }
 }

@@ -21,20 +21,20 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public User getUser(int id) {
-        return userinfomapper.getUser(id);
+    public User getUserInfo(int id) {
+        return userinfomapper.getUserInfo(id);
     }
 
     @Override
-    public User getUser(String name) {
-        return userinfomapper.getUser(name);
+    public User getUserByName(String name) {
+        return userinfomapper.getUserByName(name);
     }
 
     @Override
     public int addUser(User u) {
-        if(userinfomapper.getUser(u.getName()) == null){
+        if(userinfomapper.getUserByName(u.getName()) == null){
             userinfomapper.addUser(u);
-            return userinfomapper.getUser(u.getName()).getId();
+            return userinfomapper.getUserByName(u.getName()).getId();
         }else{
             return -100;
         }

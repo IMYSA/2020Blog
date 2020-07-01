@@ -4,8 +4,8 @@ import com.shixun.blog.entity.User;
 
 public interface UserInfoService {
     int updateUserInfo(User u);
-    User getUser(int id);
-    User getUser(String name);
+    User getUserInfo(int id);
+    User getUserByName(String name);
     int addUser(User u);
 }
 
