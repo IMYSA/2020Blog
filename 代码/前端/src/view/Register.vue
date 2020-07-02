@@ -29,6 +29,7 @@
         name: 'Login',
         data () {
             return{
+                id: "xx",
                 username: "xxx",
                 password: "123456",
                 r_password: "123456"
@@ -38,17 +39,21 @@
             register(){
                 if(this.password == this.r_password){
                     this.$axios
-                        .post('/user/update_user_info', {
-                            username: this.username,
+                        .post('/register', {
+                            name: this.username,
                             password: this.password,
                         })
                         .then(successResponse => {
-                            if (successResponse.data.code === 200) {
-                                // if(){ 用户名不重复
-                                //
-                                //     this.$router.push('/main')
-                                // }
-                                // else 用户名重复
+                            if (successResponse.data > 0) {
+                                this.$root.user_name = successResponse.data
+                                this.$router.push({path: '/main',
+                                    query: {
+                                        id: successResponse.data
+                                    }
+                                })
+                            }
+                            else{
+                                alert("用户名已被使用");
                             }
                         })
                     // .catch(failResponse => {

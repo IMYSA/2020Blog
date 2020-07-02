@@ -10,10 +10,13 @@ import javax.annotation.Resource;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
+
+
+
     @Resource
     private userInfoMapper userinfomapper;
 
-    public int updateUserInfo(User u){
+    public int updateUserInfo(User u) {
         return userinfomapper.updateUserInfo(u);
     }
 
@@ -21,4 +24,20 @@ public class UserInfoServiceImpl implements UserInfoService {
     public User getUserInfo(int id) {
         return userinfomapper.getUserInfo(id);
     }
+
+    @Override
+    public User getUserByName(String name) {
+        return userinfomapper.getUserByName(name);
+    }
+
+    @Override
+    public int addUser(User u) {
+        if(userinfomapper.getUserByName(u.getName()) == null){
+            userinfomapper.addUser(u);
+            return userinfomapper.getUserByName(u.getName()).getId();
+        }else{
+            return -100;
+        }
+    }
+
 }

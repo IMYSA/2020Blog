@@ -26,30 +26,51 @@
         name: 'Login',
         data () {
             return{
-                username: "xxx",
-                password: "123456"
+                username: "test",
+                password: "123456",
+
             }
         },
         methods: {
             login(){
                 this.$axios
-                    .post('/user/update_user_info', {
-                        username: this.username,
+                    .post('/user/login', {
+                        name: this.username,
                         password: this.password,
+                        id:"",
                     })
                     .then(successResponse => {
-                        if (successResponse.data.code === 200) {
-                            //if()密码正确
-                            //else密码错误
+                        console.log(successResponse.data)
+                        if(successResponse.data < 0){
+                            alert("用户名或密码错误");
                         }
+                        else {
+                            alert("登录成功");
+                            console.log(successResponse.data);
+                            this.id = successResponse.data
+                            this.$root.user_id = this.id
+                            console.log(this.$root.user_id)
+                            this.$router.push({path: '/main',
+                                query: {
+                                    id: this.id
+                                }
+                            })
+                        }
+
                     })
                 // .catch(failResponse => {
                 // })
-                this.$router.push('/main')
+                //
             },
             register(){
-                this.$router.push('/register')
-            }
+                this.$router.push('/register'
+                )
+            },
+            test(){
+                this.$router.push('/editor')
+            },
+
+
         }
     }
 </script>

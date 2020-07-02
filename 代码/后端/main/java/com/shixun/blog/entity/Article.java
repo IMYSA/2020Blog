@@ -8,7 +8,18 @@ public class Article {
     private String tag;
     private String description;
     private String file;
+    private String content_md;
+    private String content_html;
+    private String author_name;
     private boolean isAudit;
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
 
     public int getId() {
         return id;
@@ -72,5 +83,21 @@ public class Article {
 
     public void setAudit(boolean audit) {
         isAudit = audit;
+    }
+
+    public String getContent_html() {
+        return content_html;
+    }
+
+    public String getContent_md() {
+        return content_md;
+    }
+
+    public void setContent_html(String content_html) {
+        this.content_html = content_html;
+    }
+
+    public void setContent_md(String content_md) {
+        this.content_md = content_md;
     }
 }
