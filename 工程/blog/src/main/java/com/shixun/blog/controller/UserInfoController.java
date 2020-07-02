@@ -1,6 +1,7 @@
 package com.shixun.blog.controller;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.shixun.blog.entity.Article;
 import com.shixun.blog.entity.User;
 import com.shixun.blog.mapper.userInfoMapper;
 import com.shixun.blog.service.UserInfoService;
@@ -8,6 +9,7 @@ import com.shixun.blog.service.impl.UserInfoServiceImpl;
 import com.sun.net.httpserver.Authenticator;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @ResponseBody
@@ -49,6 +51,15 @@ public class UserInfoController {
     public int Register(@RequestBody User u)    {
         System.out.println(u.getPassword());
         return userInfoService.addUser(u);
+    }
+
+    @RequestMapping(value = "/administrator", method = RequestMethod.POST)
+    public int AuditArticle(@RequestBody Article article){
+        return userInfoService.AuditArticle(article);
+    }
+    @RequestMapping(value = "/administrator", method = RequestMethod.GET)
+    public List<Article> UpdatePending(){
+        return userInfoService.UpdatePending();
     }
 
 

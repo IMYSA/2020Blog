@@ -2,6 +2,7 @@ package com.shixun.blog.service.impl;
 
 import com.shixun.blog.entity.Comment;
 import com.shixun.blog.mapper.CommentInfoMapper;
+import com.shixun.blog.mapper.CommentInfoMapper;
 import com.shixun.blog.service.CommentInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,12 @@ public class CommentInfoServiceImpl implements CommentInfoService{
     }
 
     @Override
-    public List<Comment> GetComment(int articleId) {
-        return commentInfoMapper.GetComment(articleId);
+    public List<Comment> GetCommentByArticle(int articleId) {
+        return commentInfoMapper.GetCommentByArticle(articleId);
     }
 
     @Override
-    public List<Comment> GetComment(String author) {
-        return commentInfoMapper.GetComment(author);
+    public List<Comment> GetCommentByAuthor(String author) {
+        return commentInfoMapper.GetCommentByAuthor(author);
     }
 }
